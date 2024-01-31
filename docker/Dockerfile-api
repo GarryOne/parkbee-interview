@@ -1,8 +1,7 @@
 FROM alpine
 
 ENV key=value
+COPY ./docker/src/api/api /home/executable
 
-COPY ./docker/src .
-
-CMD [ "executable" ]
-ENTRYPOINT [ "executable" ]
+CMD [ "/home/executable" ]
+ENTRYPOINT [ "/home/executable" ]
