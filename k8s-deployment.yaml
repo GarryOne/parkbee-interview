@@ -1,0 +1,115 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app1
+  template:
+    metadata:
+      labels:
+        app: app1
+    spec:
+      containers:
+      - name: app1
+        image: 665357118005.dkr.ecr.eu-north-1.amazonaws.com/app1:v1
+        ports:
+        - containerPort: 80
+        env:
+          - name: MONGODB_USER
+            valueFrom:
+              secretKeyRef:
+                name: apps-secrets
+                key: MONGODB_USER
+          - name: MONGODB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: apps-secrets
+                key: MONGODB_PASSWORD
+          - name: HTTP_PORT
+            value: "80"
+        livenessProbe:
+          httpGet:
+            path: /ping
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app1-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: app1
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app2-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app2
+  template:
+    metadata:
+      labels:
+        app: app2
+    spec:
+      containers:
+      - name: app2
+        image: 665357118005.dkr.ecr.eu-north-1.amazonaws.com/app2:v1
+        ports:
+        - containerPort: 80
+        env:
+          - name: API_HOST
+            value: "api-service"  # Assuming your API service is named 'api-service'
+          - name: API_PORT
+            value: "80"
+          - name: HTTP_PORT
+            value: "80"
+
+        livenessProbe:
+          httpGet:
+            path: /ping
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app2-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: app2

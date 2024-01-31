@@ -1,0 +1,33 @@
+name: Deploy to EKS
+
+on:
+  push:
+    branches:
+      - main  # Set your branch name here
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up Kubectl
+      uses: azure/setup-kubectl@v1
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: eu-north-1  # Set your AWS region here
+
+    - name: Update kubeconfig
+      run: |
+        aws eks update-kubeconfig --name example-eks-cluster  # Use your EKS cluster name
+
+    - name: Deploy to EKS
+      run: |
+        kubectl apply -f k8s--deployment.yaml
+        # Add other kubectl commands if needed
