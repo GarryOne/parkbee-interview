@@ -1,9 +1,6 @@
-name: Deploy to EKS
+name: Deploy to EKS with Image Push
 
-on:
-  push:
-    branches:
-      - main  # Set your branch name here
+on: [push]
 
 jobs:
   deploy:
@@ -13,9 +10,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Set up Kubectl
-      uses: azure/setup-kubectl@v1
-
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -23,11 +17,29 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-north-1  # Set your AWS region here
 
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push Docker image to Amazon ECR
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY_1: app1  # Use your ECR repository name
+        ECR_REPOSITORY_2: app2  # Use your ECR repository name
+        IMAGE_TAG: latest
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_1:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY_1:$IMAGE_TAG
+        
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_2:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY_2:$IMAGE_TAG
+
     - name: Update kubeconfig
       run: |
-        aws eks update-kubeconfig --name example-eks-cluster  # Use your EKS cluster name
+        aws eks update-kubeconfig --name parkbee-cluster-v2  # Use your EKS cluster name
 
     - name: Deploy to EKS
       run: |
         kubectl apply -f k8s-deployment.yaml
+        # Ensure your deployment YAML uses the newly built image.
         # Add other kubectl commands if needed
