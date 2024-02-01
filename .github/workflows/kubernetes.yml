@@ -36,7 +36,7 @@ jobs:
 
     - name: Update kubeconfig
       run: |
-        aws eks update-kubeconfig --name parkbee-cluster-v2  # Use your EKS cluster name
+        aws eks update-kubeconfig --name parbkee-cluster-v2 --region eu-north-1
 
     - name: Deploy to EKS
       run: |
