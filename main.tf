@@ -48,7 +48,7 @@ module "eks" {
   vpc_id = module.vpc.vpc_id
 
   eks_managed_node_group_defaults = {
-    instance_types = ["m6i.large", "m5.large", "m5n.large", "m5zn.large"]
+      instance_types = ["m5.large", "t3.large"]  # Update to available instance types
   }
 
   eks_managed_node_groups = {
