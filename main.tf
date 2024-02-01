@@ -6,12 +6,12 @@ provider "aws" {
 }
 
 # ECR
-resource "aws_ecr_repository" "app1" {
-  name = "app1"
+resource "aws_ecr_repository" "api" {
+  name = "api"
 }
 
-resource "aws_ecr_repository" "app2" {
-  name = "app2"
+resource "aws_ecr_repository" "app" {
+  name = "app"
 }
 
 
