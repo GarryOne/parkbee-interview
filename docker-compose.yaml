@@ -5,7 +5,6 @@ services:
     build:
       context: ./
       dockerfile: ./docker/Dockerfile-app
-#    image: parkbee-app:latest
     environment:
       API_HOST: api
       API_PORT: 3000
@@ -17,7 +16,6 @@ services:
     build:
       context: ./
       dockerfile: ./docker/Dockerfile-api
-#    image: parkbee-api:latest
     environment:
       MONGODB_USER: devops
       MONGODB_PASSWORD: z6K1v5j6G5zan2c7
