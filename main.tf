@@ -8,10 +8,12 @@ provider "aws" {
 # ECR
 resource "aws_ecr_repository" "api" {
   name = "api"
+  force_delete = true
 }
 
 resource "aws_ecr_repository" "app" {
   name = "app"
+  force_delete = true
 }
 
 
