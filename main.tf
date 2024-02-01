@@ -1,5 +1,8 @@
 provider "aws" {
   region = "eu-north-1"
+  allowed_account_ids = [
+    "665357118005",
+  ]
 }
 
 # ECR
@@ -35,8 +38,8 @@ module "vpc" {
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   version         = "~> 19.0"
-  cluster_name    = "parbkee-cluster"
-  cluster_version = "1.29"
+  cluster_name    = "parbkee-cluster-v2"
+  cluster_version = "1.28"
   subnet_ids         = module.vpc.private_subnets
 
   tags = {
