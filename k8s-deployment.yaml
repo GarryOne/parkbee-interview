@@ -58,7 +58,7 @@ metadata:
   name: api-service
   namespace: myapp
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 80
     targetPort: 80
@@ -88,7 +88,7 @@ spec:
         - containerPort: 80
         env:
           - name: API_HOST
-            value: "api-service"
+            value: "api-service.myapp"
           - name: API_PORT
             value: "80"
           - name: HTTP_PORT

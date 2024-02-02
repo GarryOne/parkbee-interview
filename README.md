@@ -126,3 +126,8 @@ kubectl config use-context arn:aws:eks:eu-north-1:665357118005:cluster/parbkee-c
 ```
 docker compose up
 ```
+
+## ECR Repositories
+
+* `665357118005.dkr.ecr.eu-north-1.amazonaws.com/app:latest`
+* `665357118005.dkr.ecr.eu-north-1.amazonaws.com/api:latest`
