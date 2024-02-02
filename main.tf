@@ -40,7 +40,7 @@ module "vpc" {
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   version         = "~> 19.0"
-  cluster_name    = "parbkee-cluster"
+  cluster_name    = "parkbee-cluster"
   cluster_version = "1.28"
   subnet_ids         = module.vpc.private_subnets
 
