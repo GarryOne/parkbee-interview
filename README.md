@@ -61,6 +61,10 @@ kubectl port-forward --address 0.0.0.0 service/prometheus-release-grafana 3000:8
 http://localhost:3000/ - Grafana
 http://localhost:9090/ - Prometheus
 
+### Grafana credentials
+User: `admin`
+Pass: `prom-operator`
+
 ---
 
 ## Kubernetes limited account
