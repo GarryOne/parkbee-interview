@@ -18,7 +18,7 @@ services:
       dockerfile: ./docker/Dockerfile-api
     environment:
       MONGODB_USER: devops
-      MONGODB_PASSWORD: z6K1v5j6G5zan2c7
+      MONGODB_PASSWORD: pICBMdNaNmG7Ebra
       HTTP_PORT: 80
     ports:
       - "3000:80"

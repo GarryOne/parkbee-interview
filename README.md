@@ -101,3 +101,10 @@ You should see only the pods in the "myapp" namespace
 ```
 kubectl config use-context arn:aws:eks:eu-north-1:665357118005:cluster/parbkee-cluster
 ```
+
+
+
+## Testing locally with docker-compose.yaml
+```
+docker compose up
+```
