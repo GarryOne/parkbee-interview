@@ -88,7 +88,7 @@ spec:
         - containerPort: 80
         env:
           - name: API_HOST
-            value: "api-service"  # Assuming your API service is named 'api-service'
+            value: "api-service"
           - name: API_PORT
             value: "80"
           - name: HTTP_PORT
