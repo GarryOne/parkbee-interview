@@ -15,6 +15,7 @@ docker push 665357118005.dkr.ecr.eu-north-1.amazonaws.com/app2:v1
 * Create the Kubernetes user with limited access
 * Modify the terraform.yaml so that on PR branch it runs only terraform plan. And "terraform apply" should be run only on main branch
 * Make the API available only inside the cluster
+* Add HTTPS to the services
 
 
 
@@ -37,6 +38,21 @@ $ helm install prometheus-release prometheus-community/kube-prometheus-stack
 $ kubectl port-forward pod/prometheus-prometheus-release-kube-pr-prometheus-0 9090:9090 -n default
 $ kubectl port-forward --address 0.0.0.0 service/prometheus-release-grafana 3000:80
 ```
+
+$ kubectl patch svc prometheus-release-grafana -n default -p '{"spec": {"type": "LoadBalancer"}}'
+
+$ kubectl patch svc prometheus-release-kube-pr-prometheus -n default -p '{"spec": {"type": "LoadBalancer"}}'
+
+## Get the public URLs of Grafana and Prometheus
+
+```
+$ kubectl get svc -n default
+```
+
+They should look like this.
+
+http://a2bdb2dec9fc54714ab344f9e16e571f-539306497.eu-north-1.elb.amazonaws.com:9090/graph?g0.expr=&g0.tab=1&g0.display_mode=lines&g0.show_exemplars=0&g0.range_input=1h
+http://abb804b0ded9a4736813d580290e8f16-253192928.eu-north-1.elb.amazonaws.com/login
 
 ## Access
 http://localhost:3000/ - Grafana
