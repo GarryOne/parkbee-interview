@@ -75,9 +75,21 @@ SA_TOKEN=$(kubectl get secret limited-access-account-token -n myapp -o jsonpath=
 ```
 
 ### One command test 
+
+This one would not work
+```
+❯ kubectl --token=$SA_TOKEN get pods -n default
+Error from server (Forbidden): pods is forbidden: User "system:serviceaccount:myapp:limited-access-account" cannot list resource "pods" in API group "" in the namespace "default"
+```
+
+The below one would work, since the current user is configured to have access only to `myapp` namespace
 ```
 kubectl --token=$SA_TOKEN get pods -n myapp
 ```
+
+
+
+
 
 
 ### Switch context 
