@@ -15,7 +15,7 @@
 * Run the pipelines for the first time. (this will do `kubectl apply -f secrets.yaml` where is **MONGODB** connection defined)
 * Connect local kubectl to EKS cluster 
 ```
-$ aws eks update-kubeconfig --name parbkee-cluster
+aws eks update-kubeconfig --name parbkee-cluster
 ```
 
 # Monitoring
@@ -23,26 +23,26 @@ $ aws eks update-kubeconfig --name parbkee-cluster
 ## Helm charts for Prometheus and Grafana
 
 ```
-$ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-$ helm repo update
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
 
-$ helm install prometheus-release prometheus-community/kube-prometheus-stack
+helm install prometheus-release prometheus-community/kube-prometheus-stack
 ```
 
 ### Exposing Prometheus and Grafana publicly URLs
 
 ```
-$ kubectl patch svc prometheus-release-grafana -n default -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl patch svc prometheus-release-grafana -n default -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
 ```
-$ kubectl patch svc prometheus-release-kube-pr-prometheus -n default -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl patch svc prometheus-release-kube-pr-prometheus -n default -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
 ### Get the public URLs of Grafana and Prometheus
 
 ```
-$ kubectl get svc -n default
+kubectl get svc -n default
 ```
 
 They should look like this.
@@ -54,8 +54,8 @@ They should look like this.
 ### Access Grafana and Prometheus locally
 
 ```
-$ kubectl port-forward pod/prometheus-prometheus-release-kube-pr-prometheus-0 9090:9090 -n default
-$ kubectl port-forward --address 0.0.0.0 service/prometheus-release-grafana 3000:80
+kubectl port-forward pod/prometheus-prometheus-release-kube-pr-prometheus-0 9090:9090 -n default
+kubectl port-forward --address 0.0.0.0 service/prometheus-release-grafana 3000:80
 ```
 
 http://localhost:3000/ - Grafana
@@ -71,12 +71,12 @@ kubectl apply -f service-account.yaml
 
 
 ```
-$ SA_TOKEN=$(kubectl get secret limited-access-account-token -n myapp -o jsonpath='{.data.token}' | base64 --decode)
+SA_TOKEN=$(kubectl get secret limited-access-account-token -n myapp -o jsonpath='{.data.token}' | base64 --decode)
 ```
 
 ### One command test 
 ```
-$ kubectl --token=$SA_TOKEN get pods -n myapp
+kubectl --token=$SA_TOKEN get pods -n myapp
 ```
 
 
