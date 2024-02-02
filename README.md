@@ -78,7 +78,7 @@ Now, we can get the `SA_TOKEN` using it later
 SA_TOKEN=$(kubectl get secret limited-access-account-token -n myapp -o jsonpath='{.data.token}' | base64 --decode)
 ```
 
-### One command test 
+### One command test (as admin)
 
 This one would not work
 ```
@@ -91,17 +91,28 @@ The below one would work
 kubectl --token=$SA_TOKEN get pods -n myapp
 ```
 
-
-
-
-
-
-### Switch context 
+### Create context
 
 ```
 kubectl config set-credentials limited-access-account --token=$SA_TOKEN
 kubectl config set-context limited-access-context --cluster=arn:aws:eks:eu-north-1:665357118005:cluster/parbkee-cluster --namespace=myapp --user=limited-access-account
+```
+
+### Switch context as admin
+```
 kubectl config use-context limited-access-context
+```
+
+### Switch back to normal user/context
+```
+kubectl config use-context arn:aws:eks:eu-north-1:665357118005:cluster/parbkee-cluster
+```
+
+
+### Login with another user
+Replace `limited-access-kubeconfig.yaml` token with `$SA_TOKEN` and run:
+```
+export KUBECONFIG=/path/to/limited-access-kubeconfig.yaml
 ```
 
 ### Test
@@ -109,18 +120,10 @@ kubectl config use-context limited-access-context
 kubectl get pods
 ```
 
-You should see only the pods in the "myapp" namespace
+You should see only the pods in the `myapp` namespace
 
 
-### Switch back to normal user/context
-
-```
-kubectl config use-context arn:aws:eks:eu-north-1:665357118005:cluster/parbkee-cluster
-```
-
-
-
-## Testing locally with docker-compose.yaml
+## Docker Compose integration (`docker-compose.yml`)
 ```
 docker compose up
 ```
