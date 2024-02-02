@@ -61,3 +61,39 @@ http://localhost:9090/ - Prometheus
 
 
 
+
+## Kubernetes limited account
+
+```
+kubectl apply -f service-account.yaml
+```
+
+
+```
+$ SA_TOKEN=$(kubectl get secret limited-access-account-token -n myapp -o jsonpath='{.data.token}' | base64 --decode)
+```
+
+## One command test 
+```
+$ kubectl --token=$SA_TOKEN get pods -n myapp
+```
+
+
+## Switch context 
+
+```
+kubectl config set-credentials limited-access-account --token=$SA_TOKEN
+kubectl config set-context limited-access-context --cluster=arn:aws:eks:eu-north-1:665357118005:cluster/parbkee-cluster --namespace=myapp --user=limited-access-account
+kubectl config use-context limited-access-context
+```
+
+## Test
+```kubectl get pods```
+
+You should see only the pods in the "myapp" namespace
+
+
+## Switch back to normal user/context
+
+```kubectl config use-context arn:aws:eks:eu-north-1:665357118005:cluster/parbkee-cluster```
+
