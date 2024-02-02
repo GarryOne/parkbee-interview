@@ -12,7 +12,7 @@
 
 ## See it action
 
-* Run the pipelines for the first time.
+* Run the pipelines for the first time. (this will do `kubectl apply -f secrets.yaml` where is **MONGODB** connection defined)
 * Connect local kubectl to EKS cluster 
 ```
 $ aws eks update-kubeconfig --name parbkee-cluster

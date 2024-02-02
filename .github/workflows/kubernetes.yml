@@ -42,5 +42,4 @@ jobs:
       run: |
         kubectl apply -f secrets.yaml
         kubectl apply -f k8s-deployment.yaml
-        # Ensure your deployment YAML uses the newly built image.
-        # Add other kubectl commands if needed
+        kubectl apply -f service-account.yaml
