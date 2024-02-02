@@ -73,6 +73,8 @@ Pass: `prom-operator`
 kubectl apply -f service-account.yaml
 ```
 
+This one adds a `limited-access-account` that has access only to the `myapp` namespace 
+
 
 ```
 SA_TOKEN=$(kubectl get secret limited-access-account-token -n myapp -o jsonpath='{.data.token}' | base64 --decode)
@@ -86,7 +88,7 @@ This one would not work
 Error from server (Forbidden): pods is forbidden: User "system:serviceaccount:myapp:limited-access-account" cannot list resource "pods" in API group "" in the namespace "default"
 ```
 
-The below one would work, since the current user is configured to have access only to `myapp` namespace
+The below one would work
 ```
 kubectl --token=$SA_TOKEN get pods -n myapp
 ```
