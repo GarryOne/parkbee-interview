@@ -45,6 +45,7 @@ module "eks" {
   subnet_ids         = module.vpc.private_subnets
 
   cluster_endpoint_public_access  = true
+#  cluster_endpoint_public_access  = false
 
   tags = {
     Environment = "training"
@@ -70,3 +71,23 @@ module "eks" {
     }
   }
 }
+
+# EC2 bastion host
+
+#resource "tls_private_key" "bastion_key" {
+#  algorithm = "RSA"
+#}
+#
+#resource "aws_key_pair" "bastion_key" {
+#  key_name   = "bastion-key"  # Specify the key pair name
+#  public_key = tls_private_key.bastion_key.public_key_openssh
+#}
+#
+#
+#resource "aws_instance" "bastion" {
+#  ami           = "ami-000e50175c5f86214"  # Sample Amazon Linux 2 AMI ID
+#  instance_type = "t2.micro"
+#  subnet_id     = module.vpc.public_subnets[0]
+#  key_name      = aws_key_pair.bastion_key.key_name
+#  associate_public_ip_address = true
+#}
