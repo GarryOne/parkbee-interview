@@ -3,6 +3,7 @@
 * Modify the `terraform.yaml` so that on PR branch it runs only `terraform plan`, but `terraform apply` should be run only on `main` branch
 * Add HTTPS to the services
 * Optionally, for a better flexibility, there can be added `outputs.tf` and `variables.tf`
+* Make the Kubernetes cluster API endpoint private
 
 
 ## CI/CD Pipelines

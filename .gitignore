@@ -1,4 +1,6 @@
 .venv
 .idea
 .terraform/
+node_modules/
+
 #terraform.tfstate*
