@@ -1,7 +1,6 @@
 ### TODOs
 * Move the `tfstate` to s3 storage
-* Modify the `terraform.yaml` so that on PR branch it runs only terraform plan. And `terraform apply` should be run only on main branch
-* Make the API available only inside the cluster
+* Modify the `terraform.yaml` so that on PR branch it runs only `terraform plan`, but `terraform apply` should be run only on `main` branch
 * Add HTTPS to the services
 * Optionally, for a better flexibility, there can be added `outputs.tf` and `variables.tf`
 
@@ -69,13 +68,12 @@ Pass: `prom-operator`
 
 ## Kubernetes limited account
 
+This one adds a `limited-access-account` that has access only to the `myapp` namespace
 ```
 kubectl apply -f service-account.yaml
 ```
 
-This one adds a `limited-access-account` that has access only to the `myapp` namespace 
-
-
+Now, we can get the `SA_TOKEN` using it later
 ```
 SA_TOKEN=$(kubectl get secret limited-access-account-token -n myapp -o jsonpath='{.data.token}' | base64 --decode)
 ```
@@ -131,3 +129,6 @@ docker compose up
 
 * `665357118005.dkr.ecr.eu-north-1.amazonaws.com/app:latest`
 * `665357118005.dkr.ecr.eu-north-1.amazonaws.com/api:latest`
+
+## AWS Region
+`eu-north-1`
