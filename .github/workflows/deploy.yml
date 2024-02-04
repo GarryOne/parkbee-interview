@@ -1,4 +1,4 @@
-name: Deploy to EKS with Image Push
+name: Deploy Terraform and Kubernetes
 
 on: [push]
 
