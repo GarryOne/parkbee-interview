@@ -1,4 +1,4 @@
-name: Deploy Terraform and Kubernetes
+name: Deploy
 
 on: [push]
 

@@ -1,6 +1,6 @@
 FROM alpine
 
-COPY ./src/app/app /home/executable
+COPY ./src/app-executable /home/executable
 
 CMD [ "/home/executable" ]
 ENTRYPOINT [ "/home/executable" ]

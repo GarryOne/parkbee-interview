@@ -1,6 +1,6 @@
 FROM alpine
 
-COPY ./src/api/api /home/executable
+COPY ./src/api-executable /home/executable
 
 CMD [ "/home/executable" ]
 ENTRYPOINT [ "/home/executable" ]
