@@ -81,7 +81,7 @@ spec:
             value: "api-service.myapp"
           - name: API_PORT
             value: "80"
-          - name: HTTP_PORT
+          - name: PORT
             value: "80"
 
         livenessProbe:
