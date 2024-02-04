@@ -21,7 +21,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.5.1"
 
-  name = "your-vpc-name"
+  name = "my-vpc-name"
   cidr = "10.0.0.0/16"
 
   azs             = ["eu-north-1a", "eu-north-1b", "eu-north-1c"]
@@ -40,7 +40,7 @@ module "vpc" {
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   version         = "~> 19.0"
-  cluster_name    = "parkbee-cluster"
+  cluster_name    = "parkbee-cluster-v3"
   cluster_version = "1.28"
   subnet_ids         = module.vpc.private_subnets
 

@@ -1,6 +1,0 @@
-name: Terraform
-
-on: [push]
-
-jobs:
-
