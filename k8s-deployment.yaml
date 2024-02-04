@@ -23,30 +23,23 @@ spec:
       - name: api
         image: 665357118005.dkr.ecr.eu-north-1.amazonaws.com/api:latest
         ports:
-        - containerPort: 80
+          - containerPort: 4000
         env:
           - name: HTTP_PORT
-            value: "80"
-#        livenessProbe:
-#          httpGet:
-#            path: /ping
-#            port: 80
-#          initialDelaySeconds: 10
-#          periodSeconds: 5
-#        readinessProbe:
-#          httpGet:
-#            path: /health
-#            port: 80
-#          initialDelaySeconds: 5
-#          periodSeconds: 5
+            value: "4000"
+        livenessProbe:
+          httpGet:
+            path: /ping
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
 
-        resources:
-          requests:
-            memory: "256Mi"
-            cpu: "100m"
-          limits:
-            memory: "512Mi"
-            cpu: "200m"
 
 
 ---
@@ -56,10 +49,10 @@ metadata:
   name: api-service
   namespace: myapp
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 4000
   selector:
     app: api
 
@@ -83,35 +76,28 @@ spec:
       - name: app
         image: 665357118005.dkr.ecr.eu-north-1.amazonaws.com/app:latest
         ports:
-        - containerPort: 80
+          - containerPort: 3000
         env:
           - name: API_HOST
             value: "api-service.myapp"
           - name: API_PORT
             value: "80"
           - name: PORT
-            value: "80"
+            value: "3000"
 
-#        livenessProbe:
-#          httpGet:
-#            path: /api/ping
-#            port: 80
-#          initialDelaySeconds: 10
-#          periodSeconds: 5
-#        readinessProbe:
-#          httpGet:
-#            path: /api/health
-#            port: 80
-#          initialDelaySeconds: 5
-#          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /api/ping
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
 
-        resources:
-          requests:
-            memory: "256Mi"
-            cpu: "100m"
-          limits:
-            memory: "512Mi"
-            cpu: "200m"
 
 
 
@@ -125,6 +111,6 @@ spec:
   type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 80
+    targetPort: 3000
   selector:
     app: app

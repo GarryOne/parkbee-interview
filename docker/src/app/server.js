@@ -37,6 +37,14 @@ app.get('/random-text', async (req, res) => {
     }
 });
 
+app.get('/ping', (req, res) => {
+    res.send('pong');
+});
+
+app.get('/health', (req, res) => {
+    res.json({ status: 'UP' });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
