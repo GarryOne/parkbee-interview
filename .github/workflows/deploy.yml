@@ -72,3 +72,12 @@ jobs:
         kubectl apply -f secrets.yaml
         kubectl apply -f k8s-deployment.yaml
         kubectl apply -f service-account.yaml
+
+    - name: Setup Helm
+      uses: azure/setup-helm@v1
+
+    - name: Add Prometheus Helm repository
+      run: helm repo add prometheus-community https://prometheus-community.github.io/helm-charts && helm repo update
+
+    - name: Install Prometheus and Grafana
+      run: helm install prometheus-release prometheus-community/kube-prometheus-stack
