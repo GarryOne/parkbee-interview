@@ -60,22 +60,13 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
-    blue = {
-      min_size     = 1
-      max_size     = 10
-      desired_size = 2  # Adjusting desired size for initial capacity
-
-      instance_types = ["m5.large", "m5.xlarge"]  # More powerful and diversified
-      capacity_type  = "ON_DEMAND"  # Ensuring stable capacity for this critical group
-    }
-
+    blue = {}
     green = {
       min_size     = 1
       max_size     = 10
       desired_size = 1
 
-      # Diversifying with a range of powerful instance types suitable for Spot usage
-      instance_types = ["t3.xlarge", "t3a.xlarge", "m5.large", "m5.xlarge", "m5a.xlarge"]
+      instance_types = ["t3.large"]
       capacity_type  = "SPOT"
     }
   }

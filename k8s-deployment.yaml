@@ -27,18 +27,18 @@ spec:
         env:
           - name: HTTP_PORT
             value: "80"
-        livenessProbe:
-          httpGet:
-            path: /ping
-            port: 80
-          initialDelaySeconds: 10
-          periodSeconds: 5
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 5
+#        livenessProbe:
+#          httpGet:
+#            path: /ping
+#            port: 80
+#          initialDelaySeconds: 10
+#          periodSeconds: 5
+#        readinessProbe:
+#          httpGet:
+#            path: /health
+#            port: 80
+#          initialDelaySeconds: 5
+#          periodSeconds: 5
 
         resources:
           requests:
@@ -92,18 +92,18 @@ spec:
           - name: PORT
             value: "80"
 
-        livenessProbe:
-          httpGet:
-            path: /api/ping
-            port: 80
-          initialDelaySeconds: 10
-          periodSeconds: 5
-        readinessProbe:
-          httpGet:
-            path: /api/health
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 5
+#        livenessProbe:
+#          httpGet:
+#            path: /api/ping
+#            port: 80
+#          initialDelaySeconds: 10
+#          periodSeconds: 5
+#        readinessProbe:
+#          httpGet:
+#            path: /api/health
+#            port: 80
+#          initialDelaySeconds: 5
+#          periodSeconds: 5
 
         resources:
           requests:
