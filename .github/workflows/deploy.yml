@@ -72,6 +72,10 @@ jobs:
         kubectl apply -f secrets.yaml
         kubectl apply -f k8s-deployment.yaml
         kubectl apply -f service-account.yaml
+        
+        kubectl delete pods -l app=app -n myapp
+        kubectl delete pods -l app=api -n myapp
+
 
     - name: Setup Helm
       uses: azure/setup-helm@v3
