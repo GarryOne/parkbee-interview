@@ -74,7 +74,7 @@ jobs:
         kubectl apply -f service-account.yaml
 
     - name: Setup Helm
-      uses: azure/setup-helm@v1\
+      uses: azure/setup-helm@v1
       with:
         version: 'latest' # Specify the Helm version if needed, but 'latest' should default to Helm 3
 
