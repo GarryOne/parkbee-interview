@@ -84,18 +84,18 @@ spec:
           - name: PORT
             value: "80"
 
-        livenessProbe:
-          httpGet:
-            path: /ping
-            port: 80
-          initialDelaySeconds: 10
-          periodSeconds: 5
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 5
+#        livenessProbe:
+#          httpGet:
+#            path: /ping
+#            port: 80
+#          initialDelaySeconds: 10
+#          periodSeconds: 5
+#        readinessProbe:
+#          httpGet:
+#            path: /health
+#            port: 80
+#          initialDelaySeconds: 5
+#          periodSeconds: 5
 
 
 

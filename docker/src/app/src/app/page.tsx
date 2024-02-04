@@ -15,6 +15,7 @@ export default async function Home() {
   try {
     randomText = await getRandomText()
   } catch (e) {
+    console.error(e)
     randomText = <b>Error Fetching. Probably API is DOWN.</b>
   }
 
