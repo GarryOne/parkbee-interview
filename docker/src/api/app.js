@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.HTTP_PORT || 3000;
 
 app.get('/random-text', (req, res) => {
     const randomTexts = ["Hello, world!", "Express is awesome!", "Node.js is cool!"];
