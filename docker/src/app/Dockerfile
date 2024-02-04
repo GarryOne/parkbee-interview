@@ -1,25 +1,14 @@
-# Use a base image that includes Node.js
+# Use the official Node.js 18 image as a parent image
 FROM node:18-alpine
 
-# Set the working directory in the Docker container
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Install http-server globally
-RUN npm install -g http-server
+COPY package*.json ./
 
-# Copy your static content and the script
-COPY ./index.html ./public/index.html
-COPY ./envsubst.sh ./envsubst.sh
+RUN npm install
 
-# Make sure the script is executable
-RUN chmod +x ./envsubst.sh
+COPY . .
 
-# Expose port 80 to the outside world
 EXPOSE 80
 
-# Set default environment variables (optional)
-ENV API_HOST=localhost
-ENV API_PORT=3000
-
-# Use the script to start http-server
-ENTRYPOINT ["./envsubst.sh", "http-server", "public", "-p 80"]
+CMD ["node", "server.js"]
