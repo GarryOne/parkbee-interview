@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -36,7 +36,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -74,13 +74,12 @@ jobs:
         kubectl apply -f service-account.yaml
 
     - name: Setup Helm
-      uses: azure/setup-helm@v1
+      uses: azure/setup-helm@v3
       with:
         version: 'latest' # Specify the Helm version if needed, but 'latest' should default to Helm 3
 
     - name: Check Helm version
       run: helm version
-
 
     - name: Add Prometheus Helm repository
       run: helm repo add prometheus-community https://prometheus-community.github.io/helm-charts && helm repo update
