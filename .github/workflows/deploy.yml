@@ -60,7 +60,7 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_API:$IMAGE_TAG -f ./docker/src/api/Dockerfile ./docker/src/api
         docker push $ECR_REGISTRY/$ECR_REPOSITORY_API:$IMAGE_TAG
         
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_APP:$IMAGE_TAG -f ./docker/Dockerfile-app  ./docker
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_APP:$IMAGE_TAG -f ./docker/src/app/Dockerfile  ./docker/src/app
         docker push $ECR_REGISTRY/$ECR_REPOSITORY_APP:$IMAGE_TAG
 
     - name: Update kubeconfig
