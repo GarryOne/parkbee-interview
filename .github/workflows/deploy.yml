@@ -83,4 +83,9 @@ jobs:
       run: helm repo add prometheus-community https://prometheus-community.github.io/helm-charts && helm repo update
 
     - name: Install Prometheus and Grafana
-      run: helm upgrade --install prometheus-release prometheus-community/kube-prometheus-stack
+      run: |
+        helm upgrade --install prometheus-release prometheus-community/kube-prometheus-stack
+        
+        kubectl patch svc prometheus-release-grafana -n default -p '{"spec": {"type": "LoadBalancer"}}'
+        kubectl patch svc prometheus-release-kube-pr-prometheus -n default -p '{"spec": {"type": "LoadBalancer"}}'
+      

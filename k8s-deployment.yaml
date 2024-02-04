@@ -40,6 +40,14 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 5
 
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "200m"
+
 
 ---
 apiVersion: v1
@@ -48,10 +56,10 @@ metadata:
   name: api-service
   namespace: myapp
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
-  - port: 80
-    targetPort: 80
+    - port: 80
+      targetPort: 80
   selector:
     app: api
 
@@ -96,6 +104,14 @@ spec:
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 5
+
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "200m"
 
 
 
