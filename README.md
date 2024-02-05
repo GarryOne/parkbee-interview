@@ -1,7 +1,12 @@
+### Live URLs
+
+* App: http://a3152e2806ab64cab9e58e6a8a14d7c4-740023050.eu-north-1.elb.amazonaws.com
+* Grafana: http://a0d2c363309bf49479d09072b5b2cf7e-997005275.eu-north-1.elb.amazonaws.com
+* Prometheus: http://a3aa9d91199b24398a7b53b783e43dfe-1303113810.eu-north-1.elb.amazonaws.com
+
 ### TODOs
 * Move the `tfstate` to s3 storage
-* Modify the `terraform.yaml` so that on PR branch it runs only `terraform plan`, but `terraform apply` should be run only on `main` branch
-* Add HTTPS to the services
+* Add HTTPS to the services (but for this we need either a domain, either self-signed certificate)
 * Optionally, for a better flexibility, there can be added `outputs.tf` and `variables.tf`
 * Make the Kubernetes cluster API endpoint private
 
