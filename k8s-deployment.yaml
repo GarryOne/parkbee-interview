@@ -30,13 +30,13 @@ spec:
         livenessProbe:
           httpGet:
             path: /ping
-            port: 80
+            port: 4000
           initialDelaySeconds: 10
           periodSeconds: 5
         readinessProbe:
           httpGet:
             path: /health
-            port: 80
+            port: 4000
           initialDelaySeconds: 5
           periodSeconds: 5
 
@@ -88,13 +88,13 @@ spec:
         livenessProbe:
           httpGet:
             path: /api/ping
-            port: 80
+            port: 3000
           initialDelaySeconds: 10
           periodSeconds: 5
         readinessProbe:
           httpGet:
             path: /api/health
-            port: 80
+            port: 3000
           initialDelaySeconds: 5
           periodSeconds: 5
 
