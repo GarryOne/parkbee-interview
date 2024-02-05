@@ -1,8 +1,8 @@
 ### Live URLs
 
 * App: http://a3152e2806ab64cab9e58e6a8a14d7c4-740023050.eu-north-1.elb.amazonaws.com
-* Grafana: http://a0d2c363309bf49479d09072b5b2cf7e-131159924.eu-north-1.elb.amazonaws.com
-* Prometheus: http://a3aa9d91199b24398a7b53b783e43dfe-1954425744.eu-north-1.elb.amazonaws.com:9090/
+* Grafana: http://a0d2c363309bf49479d09072b5b2cf7e-1528239679.eu-north-1.elb.amazonaws.com
+* Prometheus: http://a3aa9d91199b24398a7b53b783e43dfe-308482896.eu-north-1.elb.amazonaws.com:9090/
 
 ### TODOs
 * Move the `tfstate` to s3 storage
