@@ -20,7 +20,7 @@
 * Run the pipelines for the first time. (this will do `kubectl apply -f secrets.yaml` where is **MONGODB** connection defined)
 * Connect local kubectl to EKS cluster 
 ```
-aws eks update-kubeconfig --name parkbee-cluster --region eu-north-1
+aws eks update-kubeconfig --name parkbee-cluster-v3 --region eu-north-1
 ```
 
 # Monitoring
@@ -101,7 +101,7 @@ kubectl --token=$SA_TOKEN get pods -n myapp
 
 ```
 kubectl config set-credentials limited-access-account --token=$SA_TOKEN
-kubectl config set-context limited-access-context --cluster=arn:aws:eks:eu-north-1:665357118005:cluster/parbkee-cluster --namespace=myapp --user=limited-access-account
+kubectl config set-context limited-access-context --cluster=arn:aws:eks:eu-north-1:665357118005:cluster/parkbee-cluster-v3 --namespace=myapp --user=limited-access-account
 ```
 
 ### Switch context as admin
@@ -111,7 +111,7 @@ kubectl config use-context limited-access-context
 
 ### Switch back to normal user/context
 ```
-kubectl config use-context arn:aws:eks:eu-north-1:665357118005:cluster/parbkee-cluster
+kubectl config use-context arn:aws:eks:eu-north-1:665357118005:cluster/parkbee-cluster-v3
 ```
 
 
