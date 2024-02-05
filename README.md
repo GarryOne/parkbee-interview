@@ -12,8 +12,8 @@
 
 
 ## CI/CD Pipelines
-* `.github/workflows/terraform.yml` - this one deploys the terraform infrastructure defined in `main.tf`
-* `.github/workflows/kubernetes.yml` - this one deploys the kubernetes cluster defined in `k8s-deployment.yml` 
+* `.github/workflows/deploy.yml` -> `terraform` - this one deploys the terraform infrastructure defined in `main.tf`
+* `.github/workflows/deploy.yml` -> `k8s-deployment` - this one deploys the kubernetes cluster defined in `k8s-deployment.yml` 
 
 ## See it action
 
