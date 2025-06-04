@@ -87,13 +87,13 @@ spec:
 
         livenessProbe:
           httpGet:
-            path: /api/ping
+            path: /ping
             port: 3000
           initialDelaySeconds: 10
           periodSeconds: 5
         readinessProbe:
           httpGet:
-            path: /api/health
+            path: /health
             port: 3000
           initialDelaySeconds: 5
           periodSeconds: 5
